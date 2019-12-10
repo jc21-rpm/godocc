@@ -1,0 +1,7 @@
+{
+  "publish": {
+    "PACKAGE": "godocc",
+    "GH_USER": "jc21-rpm",
+    "VERSION": "0.0.1"
+  }
+}

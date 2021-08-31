@@ -9,6 +9,7 @@ Summary:        Like "go doc" but with colors.
 Group:          Applications/System
 License:        MIT
 URL:            https://github.com/%{gh_user}/%{name}
+Source:         https://github.com/%{gh_user}/%{name}/archive/master.zip
 BuildRequires:  git golang
 
 %description
@@ -19,21 +20,9 @@ Other styles: abap, algol, arduino, autumn, borland, bw, colorful, emacs, friend
 monokailight, murphy, paraiso-light, pastie, perldoc, solarized-light256, solarized-light, tango, trac, vs, xcode.
 
 %prep
-#wget https://github.com/%{gh_user}/%{name}/archive/v%{version}.tar.gz
-wget https://github.com/inancgumus/godocc/archive/master.zip
-unzip master.zip
-#tar xzf v%{version}.tar.gz
-mkdir -p %{_builddir}/src/github.com/%{gh_user}/
-cd %{_builddir}/src/github.com/%{gh_user}/
-#ln -snf %{_builddir}/%{name}-%{version} %{name}
-ln -snf %{_builddir}/%{name}-master %{name}
-cd %{name}
+%setup -q -n %{name}-master
 
 %build
-export GOPATH="%{_builddir}"
-export PATH=$PATH:"%{_builddir}"/bin
-cd %{_builddir}/src/github.com/%{gh_user}/%{name}
-export GO111MODULE=on
 go build -o %{_builddir}/bin/%{name} main.go
 
 %install
@@ -45,4 +34,3 @@ install -Dm0755 %{_builddir}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 %changelog
 * Wed Dec 11 2019 Jamie Curnow <jc@jc21.com> 0.0.1-1
 - v0.0.1, untagged github master code
-

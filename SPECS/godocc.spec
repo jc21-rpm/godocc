@@ -4,7 +4,7 @@
 
 Name:           godocc
 Version:        0.0.1
-Release:        1
+Release:        1%{?dist}
 Summary:        Like "go doc" but with colors.
 Group:          Applications/System
 License:        MIT
